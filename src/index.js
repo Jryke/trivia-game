@@ -1,5 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Routes from './components/Routes'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
-ReactDOM.render(<Routes />, document.querySelector('#root'))
+import Routes from './components/Routes'
+import reducers from './reducers'
+
+ReactDOM.render(
+  <Provider store={createStore(reducers, applyMiddleware(thunk))}>
+    <Routes />
+  </Provider>,
+  document.querySelector('#root')
+)
