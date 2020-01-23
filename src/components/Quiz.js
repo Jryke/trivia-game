@@ -7,6 +7,7 @@ class Quiz extends React.Component {
       <div className='ui center aligned container'>
         <h1>Title</h1>
         <QuestionCard />
+        <p>1 of 10</p>
       </div>
     )
   }
