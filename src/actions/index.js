@@ -18,9 +18,21 @@ export const questionIncrement = () => {
   }
 }
 
+export const incrementReset = () => {
+  return {
+    type: 'INCREMENT_RESET',
+  }
+}
+
 export const logAnswer = (answerObj) => {
   return {
     type: 'LOG_ANSWER',
     payload: answerObj
+  }
+}
+
+export const answersReset = () => {
+  return {
+    type: 'ANSWERS_RESET',
   }
 }
