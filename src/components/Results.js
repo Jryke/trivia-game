@@ -7,7 +7,7 @@ class Results extends React.Component {
     return this.props.answers.filter(answer => answer.isCorrect).length
   }
   renderIcon = (answer) => {
-    return answer.isCorrect ? <p><i className="green check icon"></i>Correct answer</p> : <p><i className="red times icon"></i>Incorrect</p>
+    return answer.isCorrect ? <p><i className="green check icon"></i>Correct</p> : <p><i className="red times icon"></i>Incorrect</p>
   }
   render() {
     console.log(this.props)
@@ -18,13 +18,34 @@ class Results extends React.Component {
         {
           this.props.answers.map((answer, i) => {
             return(
-              this.renderIcon(answer)
+              <div className='ui grid' key={`Question${i}`}>
+                <div className='three wide column'>
+                  {this.renderIcon(answer)}
+                </div>
+                <div className='thirteen wide column'>
+                  <div className='ui segment'>
+                    <p className='ui center aligned'>
+                      Question:
+                      <br />
+                      {this.props.questions[i].question}
+                    </p>
+                    <div className='ui divider'></div>
+                    <div className='ui two column very relaxed grid'>
+                      <div className='column'>
+                        Your answer: {answer.answerChosen}
+                      </div>
+                      <div className='column'>
+                        Correct answer: {answer.correctAnswer}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )
           })
         }
-        <p><i className="green check icon"></i>Correct answer</p>
-        <p><i className="red times icon"></i>wrong answer</p>
-        <button className='ui button'>Play Again</button>
+
+        <button className='ui button' style={{margin: '2rem'}}>Play Again</button>
       </div>
     )
   }
