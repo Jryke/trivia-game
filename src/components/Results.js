@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { incrementReset, answersReset } from '../actions'
 
 class Results extends React.Component {
   numberCorrect = () => {
@@ -8,6 +8,13 @@ class Results extends React.Component {
   }
   renderIcon = (answer) => {
     return answer.isCorrect ? <p><i className="green check icon"></i>Correct</p> : <p><i className="red times icon"></i>Incorrect</p>
+  }
+  playAgain = () => {
+    this.props.incrementReset()
+    this.props.answersReset()
+    this.props.history.push({
+      pathname: '/quiz'
+    })
   }
   render() {
     console.log(this.props)
@@ -45,7 +52,7 @@ class Results extends React.Component {
           })
         }
 
-        <button className='ui button' style={{margin: '2rem'}}>Play Again</button>
+        <button className='ui button' style={{margin: '2rem'}} onClick={this.playAgain}>Play Again</button>
       </div>
     )
   }
@@ -58,4 +65,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Results)
+export default connect(mapStateToProps, { incrementReset, answersReset })(Results)
