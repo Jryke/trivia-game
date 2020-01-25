@@ -8,7 +8,7 @@ class QuestionCard extends React.Component {
     return(
       <div className='ui centered card'>
         <div className='content'>
-          <div className='description'>Question here</div>
+          <div className='description'>{this.props.renderQuestionInfo('question')}</div>
         </div>
         <div className="extra content">
           <div className="ui two buttons">
@@ -22,7 +22,10 @@ class QuestionCard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { questionNumber: state.count }
+  return { 
+    questions: state.questions,
+    questionNumber: state.count
+  }
 }
 
 export default connect(mapStateToProps, { questionIncrement })(QuestionCard)

@@ -8,10 +8,10 @@ class Quiz extends React.Component {
   componentDidMount() {
     this.props.fetchQuestions()
   }
-  renderQuestionCategory = (type) => {
+  renderQuestionInfo = (type) => {
     // conditional to avoid error before questions are fetched
     if(this.props.questions.length > 0) {
-      return this.props.questions[this.props.questionNumber].category
+      return this.props.questions[this.props.questionNumber][type]
     }
   }
   render() {
@@ -19,8 +19,8 @@ class Quiz extends React.Component {
     console.log(this.props)
     return(
       <div className='ui center aligned container'>
-        <h1>{this.renderQuestionCategory()}</h1>
-        <QuestionCard />
+        <h1>{this.renderQuestionInfo('category')}</h1>
+        <QuestionCard renderQuestionInfo={this.renderQuestionInfo} />
         <p>{this.props.questionNumber + 1} of {this.props.questions.length}</p>
       </div>
     )
