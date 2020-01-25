@@ -9,6 +9,7 @@ class Results extends React.Component {
   renderIcon = (answer) => {
     return answer.isCorrect ? <p><i className="green check icon"></i>Correct</p> : <p><i className="red times icon"></i>Incorrect</p>
   }
+  // reset Redux store for increment and answers, navigate back to /quiz to play again
   playAgain = () => {
     this.props.incrementReset()
     this.props.answersReset()
