@@ -8,6 +8,7 @@ class Quiz extends React.Component {
   componentDidMount() {
     this.props.fetchQuestions()
   }
+  // single function to render different info types from questions object
   renderQuestionInfo = (type) => {
     // conditional to avoid error before questions are fetched
     if(this.props.questions.length > 0) {
