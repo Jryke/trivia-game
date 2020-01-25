@@ -9,7 +9,11 @@ export const fetchQuestions = () => {
       type: 'FETCH_QUESTIONS',
       payload: questionsObj.data.results
     })      
-
   }
-  
+}
+
+export const questionIncrement = () => {
+  return {
+    type: 'INCREMENT'
+  }
 }
