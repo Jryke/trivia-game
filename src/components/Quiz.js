@@ -8,14 +8,20 @@ class Quiz extends React.Component {
   componentDidMount() {
     this.props.fetchQuestions()
   }
+  renderQuestionCategory = (type) => {
+    // conditional to avoid error before questions are fetched
+    if(this.props.questions.length > 0) {
+      return this.props.questions[this.props.questionNumber].category
+    }
+  }
   render() {
     // check that questions are being fetched
-    console.log(this.props.questions)
+    console.log(this.props)
     return(
       <div className='ui center aligned container'>
-        <h1>Title</h1>
+        <h1>{this.renderQuestionCategory()}</h1>
         <QuestionCard />
-        <p>1 of 10</p>
+        <p>{this.props.questionNumber + 1} of {this.props.questions.length}</p>
       </div>
     )
   }
@@ -23,7 +29,10 @@ class Quiz extends React.Component {
 
 // mapStateToProps to update props when redux state changes
 const mapStateToProps = (state) => {
-  return { questions: state.questions }
+  return {
+    questions: state.questions,
+    questionNumber: state.count
+  }
 }
 
 export default connect(mapStateToProps, { fetchQuestions })(Quiz)
