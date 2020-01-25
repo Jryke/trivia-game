@@ -11,6 +11,10 @@ class QuestionCard extends React.Component {
       correctAnswer: correctAnswer,
       isCorrect: answer === correctAnswer
     })
+    // if last question is answered, navigate to results page 
+    if (this.props.questionNumber >= this.props.questions.length -1) {
+      this.props.navigateToResults()
+    }
     // increment question number
     this.props.questionIncrement()
   }

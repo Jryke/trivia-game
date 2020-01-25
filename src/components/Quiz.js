@@ -15,13 +15,19 @@ class Quiz extends React.Component {
       return this.props.questions[this.props.questionNumber][type]
     }
   }
+  // navigate to results page for use after answering the last question
+  navigateToResults = () => {
+    return this.props.history.push({
+      pathname: '/results'
+    })
+  }
   render() {
     // check that questions are being fetched
     console.log(this.props)
     return(
       <div className='ui center aligned container'>
         <h1>{this.renderQuestionInfo('category')}</h1>
-        <QuestionCard renderQuestionInfo={this.renderQuestionInfo} />
+        <QuestionCard renderQuestionInfo={this.renderQuestionInfo} navigateToResults={this.navigateToResults} />
         <p>{this.props.questionNumber + 1} of {this.props.questions.length}</p>
       </div>
     )
