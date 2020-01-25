@@ -5,11 +5,13 @@ import { questionIncrement, logAnswer } from '../actions'
 class QuestionCard extends React.Component {
   answerQuestion = (answer) => {
     let correctAnswer = this.props.questions[this.props.questionNumber].correct_answer
+    // check if answer is correct, send object to redux with answer chosen, correct answer and isCorrect if they match
     this.props.logAnswer({
       answerChosen: answer,
       correctAnswer: correctAnswer,
       isCorrect: answer === correctAnswer
     })
+
   }
   render() {
     console.log(this.props)
