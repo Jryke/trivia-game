@@ -1,8 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { questionIncrement } from '../actions'
+import { questionIncrement, logAnswer } from '../actions'
 
 class QuestionCard extends React.Component {
+  answerQuestion = (answer) => {
+    let correctAnswer = this.props.questions[this.props.questionNumber].correct_answer
+    this.props.logAnswer({
+      answerChosen: answer,
+      correctAnswer: correctAnswer,
+      isCorrect: answer === correctAnswer
+    })
+  }
   render() {
     console.log(this.props)
     return(
@@ -13,7 +21,7 @@ class QuestionCard extends React.Component {
         <div className="extra content">
           <div className="ui two buttons">
             <div className="ui basic green button" onClick={() => this.props.questionIncrement()}>True</div>
-            <div className="ui basic red button">False</div>
+            <div className="ui basic red button" onClick={() => this.answerQuestion('False')}>False</div>
           </div>
         </div>
       </div>
@@ -24,8 +32,9 @@ class QuestionCard extends React.Component {
 const mapStateToProps = (state) => {
   return { 
     questions: state.questions,
-    questionNumber: state.count
+    questionNumber: state.count,
+    answers: state.answers
   }
 }
 
-export default connect(mapStateToProps, { questionIncrement })(QuestionCard)
+export default connect(mapStateToProps, { questionIncrement, logAnswer })(QuestionCard)

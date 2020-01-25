@@ -17,3 +17,10 @@ export const questionIncrement = () => {
     type: 'INCREMENT'
   }
 }
+
+export const logAnswer = (answerObj) => {
+  return {
+    type: 'LOG_ANSWER',
+    payload: answerObj
+  }
+}
