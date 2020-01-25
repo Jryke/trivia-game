@@ -11,7 +11,8 @@ class QuestionCard extends React.Component {
       correctAnswer: correctAnswer,
       isCorrect: answer === correctAnswer
     })
-
+    // increment question number
+    this.props.questionIncrement()
   }
   render() {
     console.log(this.props)
@@ -22,7 +23,7 @@ class QuestionCard extends React.Component {
         </div>
         <div className="extra content">
           <div className="ui two buttons">
-            <div className="ui basic green button" onClick={() => this.props.questionIncrement()}>True</div>
+            <div className="ui basic green button" onClick={() => this.answerQuestion('True')}>True</div>
             <div className="ui basic red button" onClick={() => this.answerQuestion('False')}>False</div>
           </div>
         </div>
