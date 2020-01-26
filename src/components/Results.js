@@ -1,4 +1,5 @@
 import React from 'react'
+import DOMPurify from 'dompurify'
 import { connect } from 'react-redux'
 import { incrementReset, answersReset } from '../actions'
 
@@ -34,7 +35,7 @@ class Results extends React.Component {
                     <p className='ui center aligned'>
                       Question:
                       <br />
-                      {this.props.questions[i].question}
+                      {DOMPurify.sanitize(this.props.questions[i].question)}
                     </p>
                     <div className='ui divider'></div>
                     <div className='ui two column very relaxed grid'>
