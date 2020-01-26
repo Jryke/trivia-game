@@ -1,4 +1,5 @@
 import React from 'react'
+import DOMPurify from 'dompurify'
 import { connect } from 'react-redux'
 import { questionIncrement, logAnswer } from '../actions'
 
@@ -24,7 +25,7 @@ class QuestionCard extends React.Component {
       <div className='ui centered card'>
         <div className='content'>
           <div className='description'>
-            <div dangerouslySetInnerHTML={{__html: this.props.renderQuestionInfo('question')}} />
+            {DOMPurify.sanitize(this.props.renderQuestionInfo('question'))}
           </div>
         </div>
         <div className="extra content">
