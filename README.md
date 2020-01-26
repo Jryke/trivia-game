@@ -4,4 +4,4 @@ This is a trivia game of true and false questions.  Once the questions are compl
 
 ## Questions
 
-The questions come from [https://opentdb.com/](Open Trivia Database) API at [https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean](https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean).
+The questions come from [Open Trivia Database](https://opentdb.com/) API at [https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean](https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean).
