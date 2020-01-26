@@ -22,8 +22,6 @@ class Quiz extends React.Component {
     })
   }
   render() {
-    // check that questions are being fetched
-    console.log(this.props)
     return(
       <div className='ui center aligned container'>
         <h1>{this.renderQuestionInfo('category')}</h1>

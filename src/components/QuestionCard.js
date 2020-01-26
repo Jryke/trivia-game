@@ -20,7 +20,6 @@ class QuestionCard extends React.Component {
     this.props.questionIncrement()
   }
   render() {
-    console.log(this.props)
     return(
       <div className='ui centered card'>
         <div className='content'>

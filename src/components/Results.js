@@ -18,7 +18,6 @@ class Results extends React.Component {
     })
   }
   render() {
-    console.log(this.props)
     return(
       <div className='ui center aligned container'>
         <h1>You Scored</h1>
