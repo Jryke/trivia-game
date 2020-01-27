@@ -1,6 +1,6 @@
 {
   "name": "trivia-game",
-  "homepage": "https://jryke.github.io/Trivia-Game/",
+  "homepage": "https://jryke.github.io/trivia-game/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
