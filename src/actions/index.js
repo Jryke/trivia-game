@@ -12,6 +12,18 @@ export const fetchQuestions = () => {
   }
 }
 
+export const fetchCategories = () => {
+  // redux-thunk used to handle async/await with redux
+  return async (dispatch) => {
+    const categoriesObj = await questionJSON.get('/api_category.php')
+    // dispatch manually once object is fetched
+    dispatch({
+      type: 'FETCH_CATEGORIES',
+      payload: categoriesObj.data.trivia_categories
+    })
+  }
+}
+
 export const questionIncrement = () => {
   return {
     type: 'INCREMENT'
