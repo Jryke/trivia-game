@@ -1,22 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchCategories } from '../actions'
+import { fetchCategories, setQuestionOptions } from '../actions'
 
 class Intro extends React.Component {
-  state = {
-    category: '',
-    difficulty: '',
-    type: 'multiple',
-    number: 10
-  }
   // fetch categories on initial page render
   componentDidMount() {
     this.props.fetchCategories()
   }
-  sendInputToState = (e, name) => {
-    this.setState({
-      [name]: e.target.value
+  // send values picked by user to Redux store
+  sendToRedux = (e, name) => {
+    let value = e.target.value
+    this.props.setQuestionOptions({
+      [name]: value
     })
   }
   render() {
@@ -28,7 +24,7 @@ class Intro extends React.Component {
         <div className='ui relaxed grid'>
           <div className='four column row'>
             <div className='column'>
-              <select className='ui dropdown' onChange={e => this.sendInputToState(e, 'category')}>
+              <select className='ui dropdown' onChange={e => this.sendToRedux(e, 'category')}>
                 <option value=''>Category</option>
                 {this.props.categories.map(category => {
                   return(
@@ -38,7 +34,7 @@ class Intro extends React.Component {
               </select>
             </div>
             <div className='column'>
-              <select className='ui dropdown' onChange={e => this.sendInputToState(e, 'difficulty')}>
+              <select className='ui dropdown' onChange={e => this.sendToRedux(e, 'difficulty')}>
                 <option value=''>Difficulty</option>
                 <option value='easy'>Easy</option>
                 <option value='medium'>Medium</option>
@@ -46,7 +42,7 @@ class Intro extends React.Component {
               </select>
             </div>
             <div className='column'>
-              <select className='ui dropdown' onChange={e => this.sendInputToState(e, 'type')}>
+              <select className='ui dropdown' onChange={e => this.sendToRedux(e, 'type')}>
                 <option value=''>Type</option>
                 <option value='multiple'>Multiple Choice</option>
                 <option value='boolean'>True / False</option>
@@ -54,7 +50,7 @@ class Intro extends React.Component {
             </div>
             <div className='column'>
               <div className="ui input">
-                <input type="number" placeholder="# of questions" value={this.state.number} min='1' max='50' onChange={e => this.sendInputToState(e, 'number')} />
+                <input type="number" placeholder="# of questions" value={this.props.options.number} min='1' max='50' onChange={e => this.sendToRedux(e, 'number')} />
               </div>
             </div>
           </div>
@@ -70,8 +66,9 @@ class Intro extends React.Component {
 // mapStateToProps to update props when redux state changes
 const mapStateToProps = (state) => {
   return {
-    categories: state.categories
+    categories: state.categories,
+    options: state.options
   }
 }
 
-export default connect(mapStateToProps, { fetchCategories })(Intro)
+export default connect(mapStateToProps, { fetchCategories, setQuestionOptions })(Intro)
