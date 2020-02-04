@@ -24,6 +24,13 @@ export const fetchCategories = () => {
   }
 }
 
+export const setQuestionOptions = (optionObj) => {
+  return {
+    type: 'SET_OPTIONS',
+    payload: optionObj
+  }
+} 
+
 export const questionIncrement = () => {
   return {
     type: 'INCREMENT'
