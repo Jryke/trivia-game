@@ -2,7 +2,7 @@
 const initialObj = {
   category: '',
   difficulty: '',
-  type: 'multiple',
+  type: '',
   number: 10
 }
 
