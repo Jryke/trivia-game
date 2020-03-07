@@ -35,6 +35,7 @@ class Quiz extends React.Component {
 // mapStateToProps to update props when redux state changes
 const mapStateToProps = (state) => {
   return {
+    options: state.options,
     questions: state.questions,
     questionNumber: state.count
   }
