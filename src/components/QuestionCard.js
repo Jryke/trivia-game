@@ -18,7 +18,6 @@ class QuestionCard extends React.Component {
       } else {
         // make array of answer options to reorder at random
         const answerOptions = [this.props.questions[this.props.questionNumber].correct_answer, this.props.questions[this.props.questionNumber].incorrect_answers[0], this.props.questions[this.props.questionNumber].incorrect_answers[1], this.props.questions[this.props.questionNumber].incorrect_answers[2],]
-        console.log(answerOptions)
         let randomizedAnswerOptions = []
         const randomizeAnswerOptions = () => {
           // create a random index
@@ -38,24 +37,24 @@ class QuestionCard extends React.Component {
             <div className="ui grid">
               <div className="two column row">
                 <div className="column">
-                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
+                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion(randomizedAnswerOptions[0])}>
                     <div className="visible content">{randomizedAnswerOptions[0]}</div>
                   </div>
                 </div>
                 <div className="column">
-                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
+                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion(randomizedAnswerOptions[1])}>
                     <div className="visible content">{randomizedAnswerOptions[1]}</div>
                   </div>
                 </div>
               </div>
               <div className="two column row">
                 <div className="column">
-                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
+                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion(randomizedAnswerOptions[2])}>
                     <div className="visible content">{randomizedAnswerOptions[2]}</div>
                   </div>
                 </div>
                 <div className="column">
-                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
+                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion(randomizedAnswerOptions[3])}>
                     <div className="visible content">{randomizedAnswerOptions[3]}</div>
                   </div>
                 </div>
@@ -84,7 +83,6 @@ class QuestionCard extends React.Component {
     this.props.questionIncrement()
   }
   render() {
-    console.log(this.props)
     return(
       <div className='ui centered card'>
         <div className='content'>
