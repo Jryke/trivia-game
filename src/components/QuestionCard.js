@@ -37,24 +37,24 @@ class QuestionCard extends React.Component {
             <div className="ui grid">
               <div className="two column row">
                 <div className="column">
-                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion(randomizedAnswerOptions[0])}>
+                  <div className="ui fade button" onClick={() => this.answerQuestion(randomizedAnswerOptions[0])}>
                     <div className="visible content">{randomizedAnswerOptions[0]}</div>
                   </div>
                 </div>
                 <div className="column">
-                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion(randomizedAnswerOptions[1])}>
+                  <div className="ui fade button" onClick={() => this.answerQuestion(randomizedAnswerOptions[1])}>
                     <div className="visible content">{randomizedAnswerOptions[1]}</div>
                   </div>
                 </div>
               </div>
               <div className="two column row">
                 <div className="column">
-                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion(randomizedAnswerOptions[2])}>
+                  <div className="ui fade button" onClick={() => this.answerQuestion(randomizedAnswerOptions[2])}>
                     <div className="visible content">{randomizedAnswerOptions[2]}</div>
                   </div>
                 </div>
                 <div className="column">
-                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion(randomizedAnswerOptions[3])}>
+                  <div className="ui fade button" onClick={() => this.answerQuestion(randomizedAnswerOptions[3])}>
                     <div className="visible content">{randomizedAnswerOptions[3]}</div>
                   </div>
                 </div>
