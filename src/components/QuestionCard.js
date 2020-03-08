@@ -4,6 +4,54 @@ import { connect } from 'react-redux'
 import { questionIncrement, logAnswer } from '../actions'
 
 class QuestionCard extends React.Component {
+  renderAnswerButtons = () => {
+    // check that questions have been fetched
+    if (this.props.questions.length > 0) {
+      // render True / False buttons
+      if (this.props.questions[this.props.questionNumber].type === 'boolean') {
+        return (
+          <div className="ui two buttons">
+            <div className="ui basic green button" onClick={() => this.answerQuestion('True')}>True</div>
+            <div className="ui basic red button" onClick={() => this.answerQuestion('False')}>False</div>
+          </div>
+        )
+      } else {
+        // render multiple 4 multiple choice buttons
+        return (
+          <React.Fragment>
+            <div className="ui grid">
+              <div className="two column row">
+                <div className="column">
+                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
+                    <div className="visible content">{this.props.questions[this.props.questionNumber].correct_answer}</div>
+                  </div>
+                </div>
+                <div className="column">
+                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
+                    <div className="visible content">{this.props.questions[this.props.questionNumber].incorrect_answers[0]}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="two column row">
+                <div className="column">
+                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
+                    <div className="visible content">{this.props.questions[this.props.questionNumber].incorrect_answers[1]}</div>
+                  </div>
+                </div>
+                <div className="column">
+                  <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
+                    <div className="visible content">{this.props.questions[this.props.questionNumber].incorrect_answers[2]}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </React.Fragment>
+        )
+      }
+    }
+    // render temporarily while fetching questions
+    return <div>LOADING...</div>
+  }
   answerQuestion = (answer) => {
     let correctAnswer = this.props.questions[this.props.questionNumber].correct_answer
     // check if answer is correct, send object to redux with answer chosen, correct answer and isCorrect if they match
@@ -20,6 +68,7 @@ class QuestionCard extends React.Component {
     this.props.questionIncrement()
   }
   render() {
+    console.log(this.props)
     return(
       <div className='ui centered card'>
         <div className='content'>
@@ -28,10 +77,7 @@ class QuestionCard extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <div className="ui two buttons">
-            <div className="ui basic green button" onClick={() => this.answerQuestion('True')}>True</div>
-            <div className="ui basic red button" onClick={() => this.answerQuestion('False')}>False</div>
-          </div>
+          {this.renderAnswerButtons()}
         </div>
       </div>
     )
