@@ -16,31 +16,47 @@ class QuestionCard extends React.Component {
           </div>
         )
       } else {
-        // render multiple 4 multiple choice buttons
+        // make array of answer options to reorder at random
+        const answerOptions = [this.props.questions[this.props.questionNumber].correct_answer, this.props.questions[this.props.questionNumber].incorrect_answers[0], this.props.questions[this.props.questionNumber].incorrect_answers[1], this.props.questions[this.props.questionNumber].incorrect_answers[2],]
+        console.log(answerOptions)
+        let randomizedAnswerOptions = []
+        const randomizeAnswerOptions = () => {
+          // create a random index
+          const pickRandomIndex = Math.round(Math.random() * (answerOptions.length - 1))
+          // push element at random index from answerOptions to randomizedAnswerOptions array
+          randomizedAnswerOptions.push(answerOptions[pickRandomIndex])
+          // remove answer from answerOptions array
+          answerOptions.splice(pickRandomIndex, 1)
+        }
+        // repeat until all options are randomized
+        while (answerOptions.length > 0) {
+          randomizeAnswerOptions()
+        }
+        // render multiple 4 multiple choice buttons using randomizedAnswerOptions array
         return (
           <React.Fragment>
             <div className="ui grid">
               <div className="two column row">
                 <div className="column">
                   <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
-                    <div className="visible content">{this.props.questions[this.props.questionNumber].correct_answer}</div>
+                    <div className="visible content">{randomizedAnswerOptions[0]}</div>
                   </div>
                 </div>
                 <div className="column">
                   <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
-                    <div className="visible content">{this.props.questions[this.props.questionNumber].incorrect_answers[0]}</div>
+                    <div className="visible content">{randomizedAnswerOptions[1]}</div>
                   </div>
                 </div>
               </div>
               <div className="two column row">
                 <div className="column">
                   <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
-                    <div className="visible content">{this.props.questions[this.props.questionNumber].incorrect_answers[1]}</div>
+                    <div className="visible content">{randomizedAnswerOptions[2]}</div>
                   </div>
                 </div>
                 <div className="column">
                   <div className="ui fade button" tabIndex="0" onClick={() => this.answerQuestion('True')}>
-                    <div className="visible content">{this.props.questions[this.props.questionNumber].incorrect_answers[2]}</div>
+                    <div className="visible content">{randomizedAnswerOptions[3]}</div>
                   </div>
                 </div>
               </div>
